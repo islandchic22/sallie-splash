@@ -1,0 +1,43 @@
+const PHONE_PRICE = 99.99;
+const ACC_PRICE = 29.99; 
+
+var TAX_RATE = prompt("What is your local sales tax rate?");
+var BANK_BAL = prompt("What is your bank account balance?");
+var THRESHOLD = (BANK_BAL - (BANK_BAL*0.25));
+var amount = 0;
+
+while(amount<BANK_BAL)
+    {
+        amount += PHONE_PRICE;
+        
+        if(amount<THRESHOLD)
+            {
+                amount += ACC_PRICE;
+            }
+    }
+
+function calculateTax(amount) 
+    {
+        return amount += (amount*TAX_RATE);
+    }
+
+function easyTiger(amount)
+{
+    amount /= (1+TAX_RATE);
+    amount -= (PHONE_PRICE+ACC_PRICE);
+    return amount; 
+}
+
+if(amount > BANK_BAL)
+    {
+        amount = easyTiger(amount);
+        
+        amount = calculateTax(amount);
+    }
+
+function formatAmount(amount)
+{
+    return "$" + amount.toFixed(2);
+}
+
+console.log("Your purchase totals " + formatAmount(amount) + ".");
